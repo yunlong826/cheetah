@@ -22,6 +22,7 @@
         <dubbo.version>2.7.1</dubbo.version>
         <mybatis-plus.version>3.4.2</mybatis-plus.version>
         <hutool.version>5.7.15</hutool.version>
+        <fastJson.version>1.2.83</fastJson.version>
     </properties>
 
 
@@ -93,6 +94,12 @@
                 <groupId>cn.hutool</groupId>
                 <artifactId>hutool-all</artifactId>
                 <version>${hutool.version}</version>
+            </dependency>
+
+            <dependency>
+                <groupId>com.alibaba</groupId>
+                <artifactId>fastjson</artifactId>
+                <version>${fastJson.version}</version>
             </dependency>
 
 
