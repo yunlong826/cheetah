@@ -1,8 +1,8 @@
 package com.cheetah.messages.controller.provider.action;
 
+import com.cheetah.messages.controller.api.domain.SendTaskModel;
 import com.cheetah.messages.controller.api.pipeline.BusinessProcess;
 import com.cheetah.messages.controller.api.pipeline.ProcessContext;
-import com.cheetah.messages.controller.provider.domain.SendTaskModel;
 import org.springframework.stereotype.Service;
 
 /**

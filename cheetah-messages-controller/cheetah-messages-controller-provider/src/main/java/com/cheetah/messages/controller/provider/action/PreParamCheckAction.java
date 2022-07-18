@@ -5,9 +5,9 @@ import cn.hutool.core.util.StrUtil;
 import com.cheetah.message.common.domain.MessageParam;
 import com.cheetah.message.common.enums.RespStatusEnum;
 import com.cheetah.message.common.vo.BasicResultVO;
+import com.cheetah.messages.controller.api.domain.SendTaskModel;
 import com.cheetah.messages.controller.api.pipeline.BusinessProcess;
 import com.cheetah.messages.controller.api.pipeline.ProcessContext;
-import com.cheetah.messages.controller.provider.domain.SendTaskModel;
 import lombok.extern.slf4j.Slf4j;
 import org.springframework.stereotype.Service;
 

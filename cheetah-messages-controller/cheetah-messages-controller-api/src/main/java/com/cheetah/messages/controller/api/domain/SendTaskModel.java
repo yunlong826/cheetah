@@ -1,4 +1,4 @@
-package com.cheetah.messages.controller.provider.domain;
+package com.cheetah.messages.controller.api.domain;
 
 import com.cheetah.message.common.domain.MessageParam;
 import com.cheetah.message.common.domain.TaskInfo;
