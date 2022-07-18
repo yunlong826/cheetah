@@ -23,6 +23,8 @@
         <mybatis-plus.version>3.4.2</mybatis-plus.version>
         <hutool.version>5.7.15</hutool.version>
         <fastJson.version>1.2.83</fastJson.version>
+        <spring-boot-autoconfigure.version>2.3.7.RELEASE</spring-boot-autoconfigure.version>
+        <guava.version>31.0.1-jre</guava.version>
     </properties>
 
 
@@ -100,6 +102,18 @@
                 <groupId>com.alibaba</groupId>
                 <artifactId>fastjson</artifactId>
                 <version>${fastJson.version}</version>
+            </dependency>
+
+            <dependency>
+                <groupId>org.springframework.boot</groupId>
+                <artifactId>spring-boot-autoconfigure</artifactId>
+                <version>${spring-boot-autoconfigure.version}</version>
+            </dependency>
+
+            <dependency>
+                <groupId>com.google.guava</groupId>
+                <artifactId>guava</artifactId>
+                <version>${guava.version}</version>
             </dependency>
 
 
