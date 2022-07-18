@@ -45,6 +45,19 @@ public class SendServiceImpl implements SendService {
 
     @Override
     public SendResponse batchSend(BatchSendRequest batchSendRequest) {
-        return null;
+        SendTaskModel sendTaskModel = SendTaskModel.builder()
+                .messageTemplateId(batchSendRequest.getMessageTemplateId())
+                .messageParamList(batchSendRequest.getMessageParamList())
+                .build();
+
+        ProcessContext context = ProcessContext.builder()
+                .code(batchSendRequest.getCode())
+                .processModel(sendTaskModel)
+                .needBreak(false)
+                .response(BasicResultVO.success()).build();
+
+        ProcessContext process = processController.process(context);
+
+        return new SendResponse(process.getResponse().getStatus(), process.getResponse().getMsg());
     }
 }
