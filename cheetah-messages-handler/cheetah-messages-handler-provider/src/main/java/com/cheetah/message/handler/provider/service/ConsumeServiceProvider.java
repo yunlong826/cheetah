@@ -7,7 +7,7 @@ import com.cheetah.message.common.dto.MessageTemplate;
 import com.cheetah.message.common.enums.AnchorState;
 import com.cheetah.message.handler.api.HandlerHolderApi;
 import com.cheetah.message.handler.api.TaskPendingHolderApi;
-import com.cheetah.message.handler.provider.consume.ConsumeService;
+import com.cheetah.message.handler.api.consume.ConsumeService;
 import com.cheetah.message.handler.provider.pending.Task;
 import com.cheetah.message.handler.provider.utils.GroupIdMappingUtils;
 import lombok.extern.slf4j.Slf4j;
@@ -28,8 +28,7 @@ import java.util.List;
 @Service
 @Slf4j
 public class ConsumeServiceProvider implements ConsumeService {
-    private static final String LOG_BIZ_TYPE = "Receiver#consumer";
-    private static final String LOG_BIZ_RECALL_TYPE = "Receiver#recall";
+
     @Autowired
     private ApplicationContext context;
 
