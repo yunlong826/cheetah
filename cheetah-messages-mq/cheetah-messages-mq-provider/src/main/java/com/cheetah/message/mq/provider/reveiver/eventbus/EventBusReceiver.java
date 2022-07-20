@@ -1,10 +1,10 @@
-package com.cheetah.message.mq.provider.eventbus.reveiver;
+package com.cheetah.message.mq.provider.reveiver.eventbus;
 
 import com.cheetah.message.common.domain.TaskInfo;
 import com.cheetah.message.common.dto.MessageTemplate;
+import com.cheetah.message.mq.api.ConsumeService;
 import com.cheetah.message.mq.provider.constants.MessageQueuePipeline;
-import com.cheetah.message.mq.provider.eventbus.EventBusListener;
-import com.cheetah.message.mq.provider.eventbus.consume.ConsumeService;
+import com.cheetah.message.mq.provider.mq.eventbus.EventBusListener;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.boot.autoconfigure.condition.ConditionalOnProperty;
 import org.springframework.stereotype.Component;
@@ -25,11 +25,11 @@ public class EventBusReceiver implements EventBusListener {
     private ConsumeService consumeService;
     @Override
     public void consume(List<TaskInfo> lists) {
-
+        consumeService.consume2Send(lists);
     }
 
     @Override
     public void recall(MessageTemplate messageTemplate) {
-
+        consumeService.consume2recall(messageTemplate);
     }
 }

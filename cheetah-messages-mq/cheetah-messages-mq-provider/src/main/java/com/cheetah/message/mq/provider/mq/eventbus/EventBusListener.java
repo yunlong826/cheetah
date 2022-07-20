@@ -1,4 +1,4 @@
-package com.cheetah.message.mq.provider.eventbus;
+package com.cheetah.message.mq.provider.mq.eventbus;
 
 import com.cheetah.message.common.domain.TaskInfo;
 import com.cheetah.message.common.dto.MessageTemplate;

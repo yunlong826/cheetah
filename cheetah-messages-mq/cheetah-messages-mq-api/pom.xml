@@ -5,6 +5,12 @@
     <groupId>com.cheetah.message.mq.api</groupId>
     <artifactId>cheetah-messages-mq-api</artifactId>
     <version>0.0.1-SNAPSHOT</version>
+    <dependencies>
+        <dependency>
+            <groupId>com.cheetah.message</groupId>
+            <artifactId>common-base</artifactId>
+        </dependency>
+    </dependencies>
     <name>cheetah-messages-mq-api</name>
 
     <parent>

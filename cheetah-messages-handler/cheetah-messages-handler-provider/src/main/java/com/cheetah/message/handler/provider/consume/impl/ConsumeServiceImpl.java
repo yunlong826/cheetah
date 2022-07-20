@@ -1,9 +1,9 @@
-package com.cheetah.message.mq.provider.eventbus.consume.impl;
+package com.cheetah.message.handler.provider.consume.impl;
 
 import com.cheetah.message.common.domain.TaskInfo;
 import com.cheetah.message.common.dto.MessageTemplate;
-import com.cheetah.message.mq.provider.eventbus.consume.ConsumeService;
-import org.apache.dubbo.config.annotation.Service;
+import com.cheetah.message.handler.provider.consume.ConsumeService;
+import org.springframework.stereotype.Service;
 
 import java.util.List;
 

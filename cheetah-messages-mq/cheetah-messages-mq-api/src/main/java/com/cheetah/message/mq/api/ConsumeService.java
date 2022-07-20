@@ -1,4 +1,4 @@
-package com.cheetah.message.mq.provider.eventbus.consume;
+package com.cheetah.message.mq.api;
 
 import com.cheetah.message.common.domain.TaskInfo;
 import com.cheetah.message.common.dto.MessageTemplate;
@@ -9,7 +9,7 @@ import java.util.List;
  * @author jack_yun
  * @version 1.0
  * @description: 消费消息服务
- * @date 2022/7/18 20:01
+ * @date 2022/7/20 21:30
  */
 public interface ConsumeService {
     /**
