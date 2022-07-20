@@ -60,6 +60,18 @@
             <groupId>com.alibaba</groupId>
             <artifactId>fastjson</artifactId>
         </dependency>
+        <dependency>
+            <groupId>com.cheetah.message.apollo.config.api</groupId>
+            <artifactId>cheetah-messages-apollo-config-api</artifactId>
+            <version>0.0.1-SNAPSHOT</version>
+            <scope>compile</scope>
+        </dependency>
+        <dependency>
+            <groupId>com.cheetah.message.apollo.config.api</groupId>
+            <artifactId>cheetah-messages-apollo-config-api</artifactId>
+            <version>0.0.1-SNAPSHOT</version>
+            <scope>compile</scope>
+        </dependency>
     </dependencies>
 
 
