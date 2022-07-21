@@ -1,9 +1,11 @@
 package com.cheetah.message.mq.provider.mq.rabbitmq;
 
+import cn.hutool.core.util.StrUtil;
 import com.cheetah.message.mq.api.SendMqService;
 import org.apache.dubbo.config.annotation.Service;
 import org.springframework.amqp.rabbit.core.RabbitTemplate;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.beans.factory.annotation.Value;
 
 /**
  * @author jack_yun
@@ -17,13 +19,16 @@ public class RabbitMqSendMqServiceImpl implements SendMqService {
     @Autowired
     private RabbitTemplate rabbitTemplate;
 
-    @Override
-    public void send(String topic, String jsonValue, String tagId) {
+    @Value("${cheetah.business.recall.group.name}")
+    private String recallId;
 
+    @Override
+    public void send(String exchange, String jsonValue, String routeKey) {
+        rabbitTemplate.convertAndSend(exchange,routeKey,jsonValue);
     }
 
     @Override
-    public void send(String topic, String jsonValue) {
-
+    public void send(String exchange, String jsonValue) {
+        send(exchange,jsonValue,recallId);
     }
 }
