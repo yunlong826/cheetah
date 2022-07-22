@@ -8,23 +8,21 @@ import org.apache.dubbo.config.annotation.Service;
 import java.util.List;
 
 /**
- * @author jack_yun
+ * Description:
+ *
+ * @author longyun
  * @version 1.0
- * @description:
- * @date 2022/7/21 23:44
+ * @date 2022/7/21 21:23
  */
 @Service
 public class GroupIdMappingProvider implements GroupIdMappingApi {
-
-
+    @Override
+    public String getGroupIdByTaskInfo(TaskInfo taskInfo) {
+        return GroupIdMappingUtils.getGroupIdByTaskInfo(taskInfo);
+    }
 
     @Override
     public List<String> getAllGroupIds() {
         return GroupIdMappingUtils.getAllGroupIds();
-    }
-
-    @Override
-    public String getGroupIdByTaskInfo(TaskInfo taskInfo) {
-        return GroupIdMappingUtils.getGroupIdByTaskInfo(taskInfo);
     }
 }
