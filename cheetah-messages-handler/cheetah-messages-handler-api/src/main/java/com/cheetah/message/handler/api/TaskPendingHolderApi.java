@@ -5,7 +5,7 @@ import java.util.concurrent.ExecutorService;
 /**
  * @author jack_yun
  * @version 1.0
- * @description: TODO
+ * @description:
  * @date 2022/7/18 20:27
  */
 public interface TaskPendingHolderApi {

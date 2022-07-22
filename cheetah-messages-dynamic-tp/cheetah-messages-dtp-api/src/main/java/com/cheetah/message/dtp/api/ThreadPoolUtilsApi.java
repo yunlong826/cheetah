@@ -5,7 +5,7 @@ import com.dtp.core.thread.DtpExecutor;
 /**
  * @author jack_yun
  * @version 1.0
- * @description: TODO
+ * @description:
  * @date 2022/7/18 23:32
  */
 public interface ThreadPoolUtilsApi {

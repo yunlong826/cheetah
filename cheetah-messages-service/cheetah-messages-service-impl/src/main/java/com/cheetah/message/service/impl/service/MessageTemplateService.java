@@ -6,7 +6,7 @@ import com.cheetah.message.common.dto.MessageTemplate;
 /**
  * @author jack_yun
  * @version 1.0
- * @description: TODO
+ * @description:
  * @date 2022/7/17 22:36
  */
 public interface MessageTemplateService extends IService<MessageTemplate> {
