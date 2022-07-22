@@ -1,69 +1,91 @@
 package com.cheetah.message.mq.provider.reveiver.rabbitmq;
 
-import cn.hutool.core.collection.CollUtil;
-import cn.hutool.core.util.StrUtil;
-import com.alibaba.fastjson.JSON;
-import com.cheetah.message.common.domain.TaskInfo;
-import com.cheetah.message.common.dto.MessageTemplate;
-import com.cheetah.message.handler.api.consume.ConsumeService;
+import com.cheetah.message.handler.api.group.GroupIdMappingApi;
 import com.cheetah.message.mq.provider.constants.MessageQueuePipeline;
-import lombok.extern.slf4j.Slf4j;
+import com.rabbitmq.client.AMQP;
 import org.apache.dubbo.config.annotation.Reference;
-import org.springframework.amqp.core.ExchangeTypes;
-import org.springframework.amqp.rabbit.annotation.Exchange;
-import org.springframework.amqp.rabbit.annotation.Queue;
-import org.springframework.amqp.rabbit.annotation.QueueBinding;
-import org.springframework.amqp.rabbit.annotation.RabbitListener;
-import org.springframework.beans.factory.config.ConfigurableBeanFactory;
+import org.springframework.amqp.core.Binding;
+import org.springframework.amqp.core.BindingBuilder;
+import org.springframework.amqp.core.DirectExchange;
+import org.springframework.amqp.core.Queue;
+import org.springframework.amqp.rabbit.config.SimpleRabbitListenerContainerFactory;
+import org.springframework.amqp.rabbit.core.RabbitAdmin;
+import org.springframework.amqp.rabbit.listener.SimpleMessageListenerContainer;
+import org.springframework.beans.factory.InitializingBean;
+import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.beans.factory.annotation.Value;
 import org.springframework.boot.autoconfigure.condition.ConditionalOnProperty;
-import org.springframework.context.annotation.Scope;
 import org.springframework.stereotype.Component;
 
+import javax.annotation.PostConstruct;
 import java.util.List;
+import java.util.Properties;
 
 /**
- * Description: 消费mq消息
- *
- * @author longyun
+ * @author jack_yun
  * @version 1.0
- * @date 2022/7/21 19:28
+ * @description:
+ * @date 2022/7/21 23:42
  */
-@Slf4j
 @Component
-@Scope(ConfigurableBeanFactory.SCOPE_PROTOTYPE)
 @ConditionalOnProperty(name = "cheetah-mq-pipeline",havingValue = MessageQueuePipeline.RABBIT_MQ)
-public class Receiver {
+public class Receiver implements InitializingBean {
+
     @Reference
-    private ConsumeService consumeService;
+    private GroupIdMappingApi groupIdMappingApi;
+
+    @Autowired
+    private SimpleMessageListenerContainer listenerContainer;
+
+    @Autowired
+    private RabbitAdmin rabbitAdmin;
+
+    @Value("${cheetah.business.topic.name}")
+    private String topic;
+
+    @Value("${cheetah.business.recall.topic.name}")
+    private String recallTopic;
+
+    @Autowired
+    private ReceiverListener receiverListener;
+
+    @Autowired
+    private ReceiverRecallListener receiverRecallListener;
 
 
 
+    private void createQueue(String queueName
+            , DirectExchange directExchange
+            ,String routeKey){
+        Properties queueProperties = rabbitAdmin.getQueueProperties(queueName);
+        if(queueProperties == null){
+            Queue queue = new Queue(queueName,true,false,false,null);
 
-    /**
-     *  消费消息
-     * @param message
-     */
-    @RabbitListener(bindings = {@QueueBinding(value = @Queue(value = "${cheetah.business.group.value}")
-            ,exchange = @Exchange(value = "#{'${cheetah.business.exchange.name}'}"
-            ,type = ExchangeTypes.DIRECT),key = {"${cheetah.business.group.value}"})})
-    public void consumer(String message){
-        if(StrUtil.isNotBlank(message)){
-            List<TaskInfo> taskInfos = JSON.parseArray(message, TaskInfo.class);
 
-            consumeService.consume2Send(taskInfos);
+            rabbitAdmin.declareQueue(queue);
+            rabbitAdmin.declareExchange(directExchange);
+            rabbitAdmin.declareBinding(BindingBuilder.bind(queue).to(directExchange).with(routeKey));
+            listenerContainer.addQueues(queue);
+            if(directExchange.getName().equals(this.topic)){
+                listenerContainer.setMessageListener(receiverListener);
+            }else{
+                listenerContainer.setMessageListener(receiverRecallListener);
+            }
         }
     }
 
+    @Override
+    public void afterPropertiesSet() throws Exception {
+        List<String> allGroupIds = groupIdMappingApi.getAllGroupIds();
+        DirectExchange exchange = new DirectExchange(topic);
+        DirectExchange recallExchange = new DirectExchange(recallTopic);
+        for(int i = 0;i<allGroupIds.size();i++){
+            // 创建消息队列
+            createQueue(allGroupIds.get(i),exchange,allGroupIds.get(i));
 
-    @RabbitListener(bindings = {@QueueBinding(value = @Queue(value = "${cheetah.business.recall.group.name}")
-            ,exchange = @Exchange(value = "#{'${cheetah.business.recall.exchange.name}'}"
-            ,type = ExchangeTypes.DIRECT),key = {"${cheetah.business.recall.group.name}"})})
-    public void recall(String message){
-        if(StrUtil.isNotBlank(message)){
-            MessageTemplate messageTemplate = JSON.parseObject(message, MessageTemplate.class);
-            consumeService.consume2recall(messageTemplate);
+            // 创建撤回消息队列
+            createQueue(allGroupIds.get(i),recallExchange,allGroupIds.get(i));
         }
+
     }
-
-
 }
