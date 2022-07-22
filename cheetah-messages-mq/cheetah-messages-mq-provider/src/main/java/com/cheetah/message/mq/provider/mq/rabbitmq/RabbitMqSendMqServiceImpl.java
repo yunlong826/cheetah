@@ -19,8 +19,8 @@ public class RabbitMqSendMqServiceImpl implements SendMqService {
     @Autowired
     private RabbitTemplate rabbitTemplate;
 
-    @Value("${cheetah.business.recall.group.name}")
-    private String recallId;
+//    @Value("${cheetah.business.recall.group.name}")
+//    private String recallId;
 
     @Override
     public void send(String exchange, String jsonValue, String routeKey) {
@@ -29,6 +29,6 @@ public class RabbitMqSendMqServiceImpl implements SendMqService {
 
     @Override
     public void send(String exchange, String jsonValue) {
-        send(exchange,jsonValue,recallId);
+//        send(exchange,jsonValue,recallId);
     }
 }
