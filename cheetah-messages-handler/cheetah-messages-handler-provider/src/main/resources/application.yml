@@ -1,0 +1,20 @@
+server:
+  port: 8878
+
+spring:
+  application:
+    name: cheetah-messages-handler
+
+logging:
+  level:
+    #root: DEBUG
+    com.alibaba.nacos.client.config.impl: WARN
+
+dubbo:
+  protocol:
+    name: dubbo
+    port: -1
+  registry:
+    address: nacos://81.68.177.58:8848
+
+
