@@ -28,8 +28,9 @@
 
         <dependency>
             <groupId>io.github.lyh200</groupId>
-            <artifactId>dynamic-tp-spring-boot-starter-apollo</artifactId>
+            <artifactId>dynamic-tp-spring-boot-starter-nacos</artifactId>
         </dependency>
+
         <dependency>
             <groupId>com.cheetah.message.dtp.api</groupId>
             <artifactId>cheetah-messages-dtp-api</artifactId>
