@@ -28,6 +28,7 @@
         <dynamic-tp.version>1.0.2</dynamic-tp.version>
         <apollo.version>1.9.1</apollo.version>
         <swagger.version>3.0.0</swagger.version>
+        <nacos.version>1.0.7</nacos.version>
     </properties>
 
 
@@ -153,6 +154,12 @@
                 <groupId>io.github.lyh200</groupId>
                 <artifactId>dynamic-tp-spring-boot-starter-common</artifactId>
                 <version>${dynamic-tp.version}</version>
+            </dependency>
+
+            <dependency>
+                <groupId>io.github.lyh200</groupId>
+                <artifactId>dynamic-tp-spring-boot-starter-nacos</artifactId>
+                <version>${nacos.version}</version>
             </dependency>
 
             <dependency>
