@@ -1,0 +1,35 @@
+
+server:
+  port: 8838
+
+spring:
+  application:
+    name: cheetah-messages-web
+logging:
+  level:
+    #root: DEBUG
+    com.alibaba.nacos.client.config.impl: WARN
+
+dubbo:
+  protocol:
+    name: dubbo
+    port: -1
+  registry:
+    address: nacos://81.68.177.58:8848
+
+
+nacos:
+  config:
+    server-addr: 81.68.177.58:8848
+    type: yaml
+    data-ids: application.yml
+    auto-refresh: true
+    group: DEFAULT_GROUP
+    bootstrap:
+      enable: true
+      log-enable: true
+
+
+
+
+
