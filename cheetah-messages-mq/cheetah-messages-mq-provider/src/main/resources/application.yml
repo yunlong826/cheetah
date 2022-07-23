@@ -1,9 +1,14 @@
 server:
-  port: 8878
+  port: 8868
 
 spring:
   application:
     name: cheetah-messages-handler
+  rabbitmq:
+    host: 81.68.177.58
+    port: 8082
+    username: rabbitmq
+    password: rabbitmq
 
 logging:
   level:
@@ -17,6 +22,14 @@ dubbo:
   registry:
     address: nacos://81.68.177.58:8848
 
+cheetah:
+  business:
+    topic:
+      name:           # 发送消息的交换机名字
+    recall:
+      topic:
+        name:         # 撤回消息的交换机名字
+
 nacos:
   config:
     server-addr: 81.68.177.58:8848
@@ -27,5 +40,4 @@ nacos:
     bootstrap:
       enable: true
       log-enable: true
-
 
