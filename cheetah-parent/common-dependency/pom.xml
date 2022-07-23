@@ -29,6 +29,8 @@
         <apollo.version>1.9.1</apollo.version>
         <swagger.version>3.0.0</swagger.version>
         <nacos.version>1.0.7</nacos.version>
+        <nacos-config.version>0.2.3</nacos-config.version>
+        <nacos-client.version>1.1.4</nacos-client.version>
     </properties>
 
 
@@ -77,6 +79,19 @@
                 <artifactId>dubbo-registry-nacos</artifactId>
                 <version>${dubbo.version}</version>
             </dependency>
+
+            <dependency>
+                <groupId>com.alibaba.nacos</groupId>
+                <artifactId>nacos-client</artifactId>
+                <version>${nacos-client.version}</version>
+            </dependency>
+
+            <dependency>
+                <groupId>com.alibaba.boot</groupId>
+                <artifactId>nacos-config-spring-boot-starter</artifactId>
+                <version>${nacos-config.version}</version>
+            </dependency>
+
 
             <!--zookeeper 注册中心客户端引入 使用的是curator客户端 -->
             <dependency>
