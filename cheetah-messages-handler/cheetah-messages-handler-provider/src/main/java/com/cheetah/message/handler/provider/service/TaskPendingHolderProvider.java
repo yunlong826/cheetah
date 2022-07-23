@@ -44,7 +44,7 @@ public class TaskPendingHolderProvider implements TaskPendingHolderApi {
 
         /**
          *
-         * 可以通过apollo配置：dynamic-tp-apollo-dtp.yml  动态修改线程池的信息
+         * 可以通过 nacos 配置：dynamic-tp-nacos-dtp.yml  动态修改线程池的信息
          */
         for(String groupId:groupIds){
             DtpExecutor executor = handlerThreadPoolApi.getExecutor(groupId);
