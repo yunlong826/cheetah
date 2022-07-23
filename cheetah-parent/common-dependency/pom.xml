@@ -71,6 +71,13 @@
                 <artifactId>dubbo-spring-boot-starter</artifactId>
                 <version>${dubbo.version}</version>
             </dependency>
+            <!-- Dubbo Registry Nacos -->
+            <dependency>
+                <groupId>org.apache.dubbo</groupId>
+                <artifactId>dubbo-registry-nacos</artifactId>
+                <version>${dubbo.version}</version>
+            </dependency>
+
             <!--zookeeper 注册中心客户端引入 使用的是curator客户端 -->
             <dependency>
                 <groupId>org.apache.dubbo</groupId>
