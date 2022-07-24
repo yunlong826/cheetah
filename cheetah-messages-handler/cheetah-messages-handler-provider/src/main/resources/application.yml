@@ -21,11 +21,19 @@ nacos:
   config:
     server-addr: 81.68.177.58:8848
     type: yaml
-    data-ids: cheetah-messages-handler.yml
+    data-id: cheetah-messages-handler.yml
     auto-refresh: true
     group: DEFAULT_GROUP
     bootstrap:
       enable: true
       log-enable: true
+
+messages:
+  account:
+    server-addr: 81.68.177.58:8848
+    data-id: local.properties
+    group: DEFAULT_GROUP
+    bootstrap:
+      enable: true
 
 

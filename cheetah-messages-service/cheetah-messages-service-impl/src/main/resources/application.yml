@@ -8,7 +8,7 @@ spring:
     url: jdbc:mysql://81.68.177.58:3306/cheetah_messages?useUnicode=true&characterEncoding=utf8&useSSL=false
     username: root
     password: 123456
-    driver-class-name: com.mysql.cj.jdbc.Driver
+    driver-class-name: com.mysql.jdbc.Driver
 logging:
   level:
     #root: DEBUG
@@ -26,12 +26,13 @@ nacos:
   config:
     server-addr: 81.68.177.58:8848
     type: yaml
-    data-ids: cheetah-messages-service.yml
+    data-id: cheetah-messages-service.yml
     auto-refresh: true
     group: DEFAULT_GROUP
     bootstrap:
       enable: true
-      log-enable: true
+      log:
+        enable: true
 
 mybatis-plus:
   configuration:

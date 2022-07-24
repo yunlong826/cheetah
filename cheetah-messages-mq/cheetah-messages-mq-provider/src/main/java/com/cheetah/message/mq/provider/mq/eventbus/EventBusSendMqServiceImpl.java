@@ -29,9 +29,9 @@ public class EventBusSendMqServiceImpl implements SendMqService {
     @Autowired
     private EventBusListener eventBusListener;
 
-    @NacosValue("${cheetah.business.topic.name}")
+    @NacosValue(value = "${cheetah.business.topic.name}",autoRefreshed = true)
     private String sendTopic;
-    @NacosValue("${cheetah.business.recall.topic.name}")
+    @NacosValue(value = "${cheetah.business.recall.topic.name}",autoRefreshed = true)
     private String recallTopic;
     @Override
     public void send(String topic, String jsonValue, String tagId) {

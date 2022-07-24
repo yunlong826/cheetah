@@ -22,12 +22,13 @@ nacos:
   config:
     server-addr: 81.68.177.58:8848
     type: yaml
-    data-ids: cheetah-send-messages.yml
+    data-id: cheetah-send-messages.yml
     auto-refresh: true
     group: DEFAULT_GROUP
     bootstrap:
       enable: true
-      log-enable: true
+      log:
+        enable: true
 
 
 

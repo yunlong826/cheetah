@@ -19,28 +19,28 @@ import org.springframework.context.annotation.Configuration;
 public class XxlJobConfig {
     private Logger logger = LoggerFactory.getLogger(XxlJobConfig.class);
 
-    @NacosValue("${xxl.job.admin.addresses}")
+    @NacosValue(value = "${xxl.job.admin.addresses}",autoRefreshed = true)
     private String adminAddresses;
 
-    @NacosValue("${xxl.job.accessToken}")
+    @NacosValue(value = "${xxl.job.accessToken}",autoRefreshed = true)
     private String accessToken;
 
-    @NacosValue("${xxl.job.executor.appname}")
+    @NacosValue(value = "${xxl.job.executor.appname}",autoRefreshed = true)
     private String appname;
 
-    @NacosValue("${xxl.job.executor.address}")
+    @NacosValue(value = "${xxl.job.executor.address}",autoRefreshed = true)
     private String address;
 
-    @NacosValue("${xxl.job.executor.ip}")
+    @NacosValue(value = "${xxl.job.executor.ip}",autoRefreshed = true)
     private String ip;
 
-    @NacosValue("${xxl.job.executor.port}")
+    @NacosValue(value = "${xxl.job.executor.port}",autoRefreshed = true)
     private int port;
 
-    @NacosValue("${xxl.job.executor.logpath}")
+    @NacosValue(value = "${xxl.job.executor.logpath}",autoRefreshed = true)
     private String logPath;
 
-    @NacosValue("${xxl.job.executor.logretentiondays}")
+    @NacosValue(value = "${xxl.job.executor.logretentiondays}",autoRefreshed = true)
     private int logRetentionDays;
 
 

@@ -19,13 +19,13 @@ import org.springframework.context.annotation.Configuration;
  */
 @Configuration
 public class RabbitMQConfig {
-    @NacosValue("${cheetah.rabbitmq.address}")
+    @NacosValue(value = "${cheetah.rabbitmq.address}",autoRefreshed = true)
     private String address;
 
-    @NacosValue("${cheetah.rabbitmq.username}")
+    @NacosValue(value = "${cheetah.rabbitmq.username}",autoRefreshed = true)
     private String username;
 
-    @NacosValue("${cheetah.rabbitmq.password}")
+    @NacosValue(value = "${cheetah.rabbitmq.password}",autoRefreshed = true)
     private String password;
 
     @Bean

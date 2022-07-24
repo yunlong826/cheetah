@@ -41,10 +41,10 @@ public class Receiver implements InitializingBean {
     @Autowired
     private RabbitAdmin rabbitAdmin;
 
-    @NacosValue("${cheetah.business.topic.name}")
+    @NacosValue(value = "${cheetah.business.topic.name}",autoRefreshed = true)
     private String topic;
 
-    @NacosValue("${cheetah.business.recall.topic.name}")
+    @NacosValue(value = "${cheetah.business.recall.topic.name}",autoRefreshed = true)
     private String recallTopic;
 
     @Autowired
