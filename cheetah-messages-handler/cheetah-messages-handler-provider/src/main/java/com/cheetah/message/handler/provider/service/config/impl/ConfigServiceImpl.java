@@ -1,14 +1,17 @@
 package com.cheetah.message.handler.provider.service.config.impl;
 
 import cn.hutool.setting.dialect.Props;
+import com.alibaba.nacos.api.NacosFactory;
 import com.alibaba.nacos.api.config.annotation.NacosValue;
 import com.alibaba.nacos.api.exception.NacosException;
 import com.cheetah.message.handler.provider.service.config.ConfigService;
+import com.cheetah.message.handler.provider.utils.StringToPropertiesUtils;
 import lombok.extern.slf4j.Slf4j;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
 import java.nio.charset.StandardCharsets;
+import java.util.Properties;
 
 /**
  * Description:
@@ -29,34 +32,50 @@ public class ConfigServiceImpl implements ConfigService {
 
 
     /**
-     * nacos配置
+     * nacos配置(针对)
      */
-    @NacosValue("${nacos.config.bootstrap.enabled}")
+    @NacosValue(value = "${messages.account.bootstrap.enable}",autoRefreshed = true)
     private Boolean enableNacos;
 
-    @NacosValue("${nacos.config.data-ids}")
+    @NacosValue(value = "${messages.account.data-id}",autoRefreshed = true)
     private String data_ids;
 
-    @NacosValue("${nacos.config.group}")
+    @NacosValue(value = "${messages.account.group}",autoRefreshed = true)
     private String group;
 
-    @Autowired
+    @NacosValue(value = "${messages.account.server-addr")
+    private String serverAddr;
+
+
     private com.alibaba.nacos.api.config.ConfigService configService;
 
     @Override
     public String getProperty(String key, String defaultValue) {
         if(enableNacos){
-            // todo getProperty 后续完善，现在只是实例
-            String config="";
+            this.configService = getConfigService();
+            Properties properties = null;
             try{
-                config = configService.getConfig(data_ids, group, 3000);
+                String config = configService.getConfig(data_ids, group, 3000);
                 log.info("com.alibaba.nacos.api.config.ConfigService configService====={}",config);
+                properties = StringToPropertiesUtils.stringToProperties(config);
             }catch (NacosException e){
                 e.printStackTrace();
             }
-            return config;
+            return properties.getProperty(key,defaultValue);
         }else{
             return props.getProperty(key,defaultValue);
         }
+    }
+
+    private com.alibaba.nacos.api.config.ConfigService getConfigService(){
+        Properties properties = new Properties();
+        properties.put("serverAddr",serverAddr);
+        com.alibaba.nacos.api.config.ConfigService configService = null;
+        try {
+            configService = NacosFactory.createConfigService(properties);
+        } catch (NacosException nacosException) {
+            nacosException.printStackTrace();
+        }
+        return configService;
     }
 }
