@@ -1,5 +1,6 @@
 package com.cheetah.message.mq.provider.config;
 
+import com.alibaba.nacos.api.config.annotation.NacosValue;
 import org.springframework.amqp.rabbit.config.SimpleRabbitListenerContainerFactory;
 import org.springframework.amqp.rabbit.connection.CachingConnectionFactory;
 import org.springframework.amqp.rabbit.connection.ConnectionFactory;
@@ -18,13 +19,13 @@ import org.springframework.context.annotation.Configuration;
  */
 @Configuration
 public class RabbitMQConfig {
-    @Value("${cheetah.rabbitmq.address}")
+    @NacosValue("${cheetah.rabbitmq.address}")
     private String address;
 
-    @Value("${cheetah.rabbitmq.username}")
+    @NacosValue("${cheetah.rabbitmq.username}")
     private String username;
 
-    @Value("${cheetah.rabbitmq.password}")
+    @NacosValue("${cheetah.rabbitmq.password}")
     private String password;
 
     @Bean

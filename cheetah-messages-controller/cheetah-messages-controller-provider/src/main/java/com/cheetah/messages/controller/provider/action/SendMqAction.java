@@ -3,6 +3,7 @@ package com.cheetah.messages.controller.provider.action;
 import cn.hutool.core.collection.CollUtil;
 import com.alibaba.fastjson.JSON;
 import com.alibaba.fastjson.serializer.SerializerFeature;
+import com.alibaba.nacos.api.config.annotation.NacosValue;
 import com.cheetah.message.common.enums.BusinessCode;
 import com.cheetah.message.common.enums.RespStatusEnum;
 import com.cheetah.message.common.vo.BasicResultVO;
@@ -29,10 +30,10 @@ public class SendMqAction implements BusinessProcess<SendTaskModel> {
     @Reference
     private SendMqService sendMqService;
 
-    @Value("${cheetah.business.topic.name}")
+    @NacosValue("${cheetah.business.topic.name}")
     private String topic;
 
-    @Value("${cheetah.business.recall.topic.name}")
+    @NacosValue("${cheetah.business.recall.topic.name}")
     private String recallTopic;
 
 

@@ -1,6 +1,7 @@
 package com.cheetah.message.mq.provider.mq.eventbus;
 
 import com.alibaba.fastjson.JSON;
+import com.alibaba.nacos.api.config.annotation.NacosValue;
 import com.cheetah.message.common.domain.TaskInfo;
 import com.cheetah.message.common.dto.MessageTemplate;
 import com.cheetah.message.mq.api.SendMqService;
@@ -28,9 +29,9 @@ public class EventBusSendMqServiceImpl implements SendMqService {
     @Autowired
     private EventBusListener eventBusListener;
 
-    @Value("${cheetah.business.topic.name}")
+    @NacosValue("${cheetah.business.topic.name}")
     private String sendTopic;
-    @Value("${cheetah.business.recall.topic.name}")
+    @NacosValue("${cheetah.business.recall.topic.name}")
     private String recallTopic;
     @Override
     public void send(String topic, String jsonValue, String tagId) {

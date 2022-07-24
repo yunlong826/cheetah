@@ -1,5 +1,6 @@
 package com.cheetah.message.mq.provider.reveiver.rabbitmq;
 
+import com.alibaba.nacos.api.config.annotation.NacosValue;
 import com.cheetah.message.handler.api.group.GroupIdMappingApi;
 import com.cheetah.message.mq.provider.constants.MessageQueuePipeline;
 import com.rabbitmq.client.AMQP;
@@ -40,10 +41,10 @@ public class Receiver implements InitializingBean {
     @Autowired
     private RabbitAdmin rabbitAdmin;
 
-    @Value("${cheetah.business.topic.name}")
+    @NacosValue("${cheetah.business.topic.name}")
     private String topic;
 
-    @Value("${cheetah.business.recall.topic.name}")
+    @NacosValue("${cheetah.business.recall.topic.name}")
     private String recallTopic;
 
     @Autowired
