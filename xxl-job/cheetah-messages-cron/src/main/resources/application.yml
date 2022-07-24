@@ -29,6 +29,18 @@ nacos:
       enable: true
       log-enable: true
 
+xxl:
+  job:
+    admin:
+      address: http://127.0.0.1:8080/xxl-job-admin
+      username: admin
+      password: 123456
+    executor:
+      appname: cheetah
+      jobHandlerName: cheetahJob
+      ip:
+      port: 6666
+
 
 
 
