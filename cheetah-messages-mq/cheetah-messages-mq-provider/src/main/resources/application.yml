@@ -4,11 +4,6 @@ server:
 spring:
   application:
     name: cheetah-messages-handler
-  rabbitmq:
-    host: 81.68.177.58
-    port: 8082
-    username: rabbitmq
-    password: rabbitmq
 
 logging:
   level:
