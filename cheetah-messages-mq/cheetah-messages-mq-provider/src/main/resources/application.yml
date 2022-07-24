@@ -24,6 +24,10 @@ cheetah:
     recall:
       topic:
         name:         # 撤回消息的交换机名字
+    rabbitmq:
+      address:
+      username:
+      password:
 
 nacos:
   config:

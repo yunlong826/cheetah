@@ -1,5 +1,6 @@
 package com.cheetah.message.cron.xxl.config;
 
+import com.alibaba.nacos.api.config.annotation.NacosValue;
 import com.xxl.job.core.executor.impl.XxlJobSpringExecutor;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
@@ -18,28 +19,28 @@ import org.springframework.context.annotation.Configuration;
 public class XxlJobConfig {
     private Logger logger = LoggerFactory.getLogger(XxlJobConfig.class);
 
-    @Value("${xxl.job.admin.addresses}")
+    @NacosValue("${xxl.job.admin.addresses}")
     private String adminAddresses;
 
-    @Value("${xxl.job.accessToken}")
+    @NacosValue("${xxl.job.accessToken}")
     private String accessToken;
 
-    @Value("${xxl.job.executor.appname}")
+    @NacosValue("${xxl.job.executor.appname}")
     private String appname;
 
-    @Value("${xxl.job.executor.address}")
+    @NacosValue("${xxl.job.executor.address}")
     private String address;
 
-    @Value("${xxl.job.executor.ip}")
+    @NacosValue("${xxl.job.executor.ip}")
     private String ip;
 
-    @Value("${xxl.job.executor.port}")
+    @NacosValue("${xxl.job.executor.port}")
     private int port;
 
-    @Value("${xxl.job.executor.logpath}")
+    @NacosValue("${xxl.job.executor.logpath}")
     private String logPath;
 
-    @Value("${xxl.job.executor.logretentiondays}")
+    @NacosValue("${xxl.job.executor.logretentiondays}")
     private int logRetentionDays;
 
 

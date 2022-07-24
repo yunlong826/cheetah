@@ -3,9 +3,9 @@ package com.cheetah.message.handler.provider.utils;
 import com.alibaba.fastjson.JSON;
 import com.alibaba.fastjson.JSONArray;
 import com.alibaba.fastjson.JSONObject;
-import com.cheetah.message.apollo.config.api.ConfigServiceApi;
 import com.cheetah.message.common.constant.AustinConstant;
-import org.apache.dubbo.config.annotation.Reference;
+import com.cheetah.message.handler.provider.service.config.ConfigService;
+import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Component;
 
 /**
@@ -18,8 +18,8 @@ import org.springframework.stereotype.Component;
 @Component
 public class AccountUtils {
 
-    @Reference
-    private ConfigServiceApi config;
+    @Autowired
+    private ConfigService config;
 
 
     /**
@@ -35,7 +35,7 @@ public class AccountUtils {
      * @return
      */
     public <T> T getAccount(Integer sendAccount, String apolloKey, String prefix, Class<T> clazz) {
-        String accountValues = config.getProperty(apolloKey, AustinConstant.APOLLO_DEFAULT_VALUE_JSON_ARRAY);
+        String accountValues = config.getProperty(apolloKey, AustinConstant.NACOS_DEFAULT_VALUE_JSON_ARRAY);
         JSONArray jsonArray = JSON.parseArray(accountValues);
         for(int i = 0;i < jsonArray.size(); i++){
             JSONObject jsonObject = jsonArray.getJSONObject(i);
