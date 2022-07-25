@@ -14,11 +14,13 @@ import org.springframework.amqp.rabbit.core.RabbitAdmin;
 import org.springframework.amqp.rabbit.listener.SimpleMessageListenerContainer;
 import org.springframework.beans.factory.InitializingBean;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.beans.factory.annotation.Qualifier;
 import org.springframework.beans.factory.annotation.Value;
 import org.springframework.boot.autoconfigure.condition.ConditionalOnProperty;
 import org.springframework.stereotype.Component;
 
 import javax.annotation.PostConstruct;
+import javax.annotation.Resource;
 import java.util.List;
 import java.util.Properties;
 
@@ -36,9 +38,6 @@ public class Receiver implements InitializingBean {
     private GroupIdMappingApi groupIdMappingApi;
 
     @Autowired
-    private SimpleMessageListenerContainer listenerContainer;
-
-    @Autowired
     private RabbitAdmin rabbitAdmin;
 
     @NacosValue(value = "${cheetah.business.topic.name}",autoRefreshed = true)
@@ -47,13 +46,12 @@ public class Receiver implements InitializingBean {
     @NacosValue(value = "${cheetah.business.recall.topic.name}",autoRefreshed = true)
     private String recallTopic;
 
-    @Autowired
-    private ReceiverListener receiverListener;
 
-    @Autowired
-    private ReceiverRecallListener receiverRecallListener;
+    @Resource(name = "simpleMessageListenerRecallContainer")
+    private SimpleMessageListenerContainer listenerRecallContainer;
 
-
+    @Resource(name = "simpleMessageListenerContainer")
+    private SimpleMessageListenerContainer listenerContainer;
 
     private void createQueue(String queueName
             , DirectExchange directExchange
@@ -66,11 +64,10 @@ public class Receiver implements InitializingBean {
             rabbitAdmin.declareQueue(queue);
             rabbitAdmin.declareExchange(directExchange);
             rabbitAdmin.declareBinding(BindingBuilder.bind(queue).to(directExchange).with(routeKey));
-            listenerContainer.addQueues(queue);
             if(directExchange.getName().equals(this.topic)){
-                listenerContainer.setMessageListener(receiverListener);
+                listenerContainer.addQueues(queue);
             }else{
-                listenerContainer.setMessageListener(receiverRecallListener);
+                listenerRecallContainer.addQueues(queue);
             }
         }
     }
