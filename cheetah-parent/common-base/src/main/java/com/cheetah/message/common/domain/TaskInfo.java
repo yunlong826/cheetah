@@ -7,6 +7,7 @@ import lombok.Data;
 import lombok.NoArgsConstructor;
 
 
+import java.io.Serializable;
 import java.util.Set;
 
 /**
@@ -19,7 +20,7 @@ import java.util.Set;
 @Builder
 @AllArgsConstructor
 @NoArgsConstructor
-public class TaskInfo {
+public class TaskInfo implements Serializable {
     /**
      * 消息模板Id
      */

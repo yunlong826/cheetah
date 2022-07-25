@@ -43,7 +43,7 @@ public class ConfigServiceImpl implements ConfigService {
     @NacosValue(value = "${messages.account.group}",autoRefreshed = true)
     private String group;
 
-    @NacosValue(value = "${messages.account.server-addr")
+    @NacosValue(value = "${messages.account.server-addr",autoRefreshed = true)
     private String serverAddr;
 
 

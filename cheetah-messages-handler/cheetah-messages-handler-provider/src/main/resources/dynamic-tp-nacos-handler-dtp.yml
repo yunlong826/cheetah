@@ -1,9 +1,5 @@
-server:
-  port: 8878
-
+# 动态线程池配置文件，建议单独开一个文件放到配置中心，字段详解看readme介绍
 spring:
-  application:
-    name: cheetah-messages-handler
   dynamic:
     tp:
       enabled: true
@@ -37,7 +33,7 @@ spring:
             - type: capacity               # 报警项类型，查看源码 NotifyTypeEnum枚举类
               enabled: true
               threshold: 80                # 报警阈值
-              platforms: [ ding,wechat ]     # 可选配置，不配置默认拿上层platforms配置的所以平台
+              platforms: [ding,wechat]     # 可选配置，不配置默认拿上层platforms配置的所以平台
               interval: 120                # 报警间隔（单位：s）
             - type: change
               enabled: true
@@ -47,36 +43,3 @@ spring:
             - type: reject
               enabled: true
               threshold: 1
-
-logging:
-  level:
-    #root: DEBUG
-    com.alibaba.nacos.client.config.impl: WARN
-
-dubbo:
-  protocol:
-    name: dubbo
-    port: -1
-  registry:
-    address: nacos://81.68.177.58:8848
-
-nacos:
-  config:
-    server-addr: 81.68.177.58:8848
-    type: yaml
-    data-id: cheetah-messages-handler.yml
-    auto-refresh: true
-    group: DEFAULT_GROUP
-    bootstrap:
-      enable: true
-      log:
-        enable: true
-
-
-messages:
-  account:
-    server-addr: 81.68.177.58:8848
-    data-id: local.properties
-    group: DEFAULT_GROUP
-    bootstrap:
-      enable: true

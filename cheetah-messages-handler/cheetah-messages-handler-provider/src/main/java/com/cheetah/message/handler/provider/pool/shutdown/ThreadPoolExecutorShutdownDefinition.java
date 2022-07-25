@@ -1,4 +1,4 @@
-package com.cheetah.message.dtp.provider.shutdown;
+package com.cheetah.message.handler.provider.pool.shutdown;
 
 import lombok.extern.slf4j.Slf4j;
 import org.springframework.context.ApplicationListener;
@@ -13,15 +13,15 @@ import java.util.concurrent.ExecutorService;
 import java.util.concurrent.TimeUnit;
 
 /**
- * @author jack_yun
+ * Description: 优雅关闭线程池
+ *
+ * @author longyun
  * @version 1.0
- * @description:
- * @date 2022/7/18 23:45
+ * @date 2022/7/25 20:50
  */
-@Component
 @Slf4j
+@Component
 public class ThreadPoolExecutorShutdownDefinition implements ApplicationListener<ContextClosedEvent> {
-
     private final List<ExecutorService> POOLS = Collections.synchronizedList(new ArrayList<>(12));
 
     /**

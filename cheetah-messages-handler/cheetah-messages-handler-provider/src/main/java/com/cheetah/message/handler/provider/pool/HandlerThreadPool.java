@@ -1,25 +1,23 @@
-package com.cheetah.message.dtp.provider.service;
+package com.cheetah.message.handler.provider.pool;
 
 import com.cheetah.message.common.constant.ThreadPoolConstant;
-import com.cheetah.message.dtp.api.HandlerThreadPoolApi;
 import com.dtp.common.em.QueueTypeEnum;
 import com.dtp.common.em.RejectedTypeEnum;
 import com.dtp.core.thread.DtpExecutor;
 import com.dtp.core.thread.ThreadPoolBuilder;
-import org.apache.dubbo.config.annotation.Service;
+import org.springframework.stereotype.Service;
 
 import java.util.concurrent.TimeUnit;
 
 /**
- * Description:
+ * Description: 消息处理器线程池接口
  *
  * @author longyun
  * @version 1.0
- * @date 2022/7/20 14:13
+ * @date 2022/7/25 20:52
  */
 @Service
-public class HandlerThreadPoolService implements HandlerThreadPoolApi {
-
+public class HandlerThreadPool {
     private static final String PRE_FIX = "cheetah.";
 
 
@@ -30,9 +28,8 @@ public class HandlerThreadPoolService implements HandlerThreadPoolApi {
      *
      * @return
      */
-    @Override
     public DtpExecutor getExecutor(String groupId) {
-        return ThreadPoolBuilder.newBuilder()
+        return  ThreadPoolBuilder.newBuilder()
                 .threadPoolName(PRE_FIX + groupId)
                 .corePoolSize(ThreadPoolConstant.COMMON_CORE_POOL_SIZE)
                 .maximumPoolSize(ThreadPoolConstant.COMMON_MAX_POOL_SIZE)
@@ -42,5 +39,6 @@ public class HandlerThreadPoolService implements HandlerThreadPoolApi {
                 .allowCoreThreadTimeOut(false)
                 .workQueue(QueueTypeEnum.VARIABLE_LINKED_BLOCKING_QUEUE.getName(), ThreadPoolConstant.COMMON_QUEUE_SIZE, false)
                 .buildDynamic();
+
     }
 }

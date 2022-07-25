@@ -24,10 +24,10 @@ cheetah:
     recall:
       topic:
         name: recall.messages.direct       # 撤回消息的交换机名字
-    rabbitmq:
-      address: 81.68.177.58:15672
-      username: guest
-      password: guest
+  rabbitmq:
+    address: 81.68.177.58:5672
+    username: guest
+    password: guest
   mq:
     pipeline: rabbitMq
 

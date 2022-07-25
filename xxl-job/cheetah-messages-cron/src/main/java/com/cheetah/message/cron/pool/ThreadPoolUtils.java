@@ -1,20 +1,21 @@
-package com.cheetah.message.dtp.provider.service;
+package com.cheetah.message.cron.pool;
 
-import com.cheetah.message.dtp.api.ThreadPoolUtilsApi;
-import com.cheetah.message.dtp.provider.shutdown.ThreadPoolExecutorShutdownDefinition;
+
+import com.cheetah.message.cron.pool.shutdown.ThreadPoolExecutorShutdownDefinition;
 import com.dtp.core.DtpRegistry;
 import com.dtp.core.thread.DtpExecutor;
-import org.apache.dubbo.config.annotation.Service;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.stereotype.Service;
 
 /**
- * @author jack_yun
+ * Description:
+ *
+ * @author longyun
  * @version 1.0
- * @description:
- * @date 2022/7/18 23:43
+ * @date 2022/7/25 20:49
  */
 @Service
-public class ThreadPoolUtilsService implements ThreadPoolUtilsApi {
+public class ThreadPoolUtils {
 
     @Autowired
     private ThreadPoolExecutorShutdownDefinition shutdownDefinition;
@@ -25,7 +26,6 @@ public class ThreadPoolUtilsService implements ThreadPoolUtilsApi {
      * 1. 将当前线程池 加入到 动态线程池内
      * 2. 注册 线程池 被Spring管理，优雅关闭
      */
-    @Override
     public void register(DtpExecutor dtpExecutor) {
         DtpRegistry.register(dtpExecutor, SOURCE_NAME);
         shutdownDefinition.registryExecutor(dtpExecutor);

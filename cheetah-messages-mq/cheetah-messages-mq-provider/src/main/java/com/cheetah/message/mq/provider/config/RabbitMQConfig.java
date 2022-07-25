@@ -62,9 +62,10 @@ public class RabbitMQConfig {
      * @param connectionFactory
      */
     @Bean
-    public void start(ConnectionFactory connectionFactory){
+    public String start(ConnectionFactory connectionFactory){
         simpleMessageListenerContainer(connectionFactory).start();
         simpleMessageListenerRecallContainer(connectionFactory).start();
+        return "";
     }
 
     @Bean

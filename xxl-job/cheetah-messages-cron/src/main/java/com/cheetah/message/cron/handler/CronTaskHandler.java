@@ -1,13 +1,12 @@
 package com.cheetah.message.cron.handler;
 
 import com.cheetah.message.cron.config.CronAsyncThreadPoolConfig;
+import com.cheetah.message.cron.pool.ThreadPoolUtils;
 import com.cheetah.message.cron.service.TaskHandler;
-import com.cheetah.message.dtp.api.ThreadPoolUtilsApi;
 import com.dtp.core.thread.DtpExecutor;
 import com.xxl.job.core.context.XxlJobHelper;
 import com.xxl.job.core.handler.annotation.XxlJob;
 import lombok.extern.slf4j.Slf4j;
-import org.apache.dubbo.config.annotation.Reference;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
@@ -24,8 +23,8 @@ public class CronTaskHandler {
     @Autowired
     private TaskHandler taskHandler;
 
-    @Reference
-    private ThreadPoolUtilsApi threadPoolUtils;
+    @Autowired
+    private ThreadPoolUtils threadPoolUtils;
 
     private DtpExecutor dtpExecutor = CronAsyncThreadPoolConfig.getXxlCronExecutor();
 

@@ -18,7 +18,7 @@ import java.util.List;
  * @date 2022/7/18 20:00
  */
 @Component
-@ConditionalOnProperty(name = "cheetah-mq-pipeline", havingValue = MessageQueuePipeline.EVENT_BUS)
+@ConditionalOnProperty(name = "cheetah.mq.pipeline", havingValue = MessageQueuePipeline.EVENT_BUS)
 public class EventBusReceiver implements EventBusListener {
 
     @Reference

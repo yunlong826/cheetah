@@ -31,7 +31,7 @@ import java.util.Properties;
  * @date 2022/7/21 23:42
  */
 @Component
-@ConditionalOnProperty(name = "cheetah-mq-pipeline",havingValue = MessageQueuePipeline.RABBIT_MQ)
+@ConditionalOnProperty(name = "cheetah.mq.pipeline",havingValue = MessageQueuePipeline.RABBIT_MQ)
 public class Receiver implements InitializingBean {
 
     @Reference
@@ -82,7 +82,7 @@ public class Receiver implements InitializingBean {
             createQueue(allGroupIds.get(i),exchange,allGroupIds.get(i));
 
             // 创建撤回消息队列
-            createQueue(allGroupIds.get(i),recallExchange,allGroupIds.get(i));
+            createQueue("recall"+allGroupIds.get(i),recallExchange,allGroupIds.get(i));
         }
 
     }

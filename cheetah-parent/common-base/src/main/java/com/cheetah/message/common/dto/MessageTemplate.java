@@ -9,6 +9,8 @@ import lombok.Data;
 import lombok.NoArgsConstructor;
 import lombok.experimental.Accessors;
 
+import java.io.Serializable;
+
 /**
  * @author jack_yun
  * @version 1.0
@@ -21,7 +23,7 @@ import lombok.experimental.Accessors;
 @Accessors(chain = true)
 @Builder
 @TableName("message_template")
-public class MessageTemplate {
+public class MessageTemplate implements Serializable {
 
     @TableId(value = "id",type = IdType.AUTO)
     private Long id;

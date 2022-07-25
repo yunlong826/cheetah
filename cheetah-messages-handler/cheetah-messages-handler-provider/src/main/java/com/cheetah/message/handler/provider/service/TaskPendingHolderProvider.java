@@ -1,12 +1,13 @@
 package com.cheetah.message.handler.provider.service;
 
-import com.cheetah.message.dtp.api.HandlerThreadPoolApi;
-import com.cheetah.message.dtp.api.ThreadPoolUtilsApi;
+
 import com.cheetah.message.handler.api.TaskPendingHolderApi;
+import com.cheetah.message.handler.provider.pool.HandlerThreadPool;
+import com.cheetah.message.handler.provider.pool.ThreadPoolUtils;
 import com.cheetah.message.handler.provider.utils.GroupIdMappingUtils;
 import com.dtp.core.thread.DtpExecutor;
-import org.apache.dubbo.config.annotation.Reference;
 import org.apache.dubbo.config.annotation.Service;
+import org.springframework.beans.factory.annotation.Autowired;
 
 import javax.annotation.PostConstruct;
 import java.util.HashMap;
@@ -23,11 +24,11 @@ import java.util.concurrent.ExecutorService;
 @Service
 public class TaskPendingHolderProvider implements TaskPendingHolderApi {
 
-    @Reference
-    private ThreadPoolUtilsApi threadPoolUtils;
+    @Autowired
+    private ThreadPoolUtils threadPoolUtils;
 
-    @Reference
-    private HandlerThreadPoolApi handlerThreadPoolApi;
+    @Autowired
+    private HandlerThreadPool handlerThreadPool;
 
     private Map<String, ExecutorService> taskPendingHolder = new HashMap<>(32);
 
@@ -47,7 +48,7 @@ public class TaskPendingHolderProvider implements TaskPendingHolderApi {
          * 可以通过 nacos 配置：dynamic-tp-nacos-dtp.yml  动态修改线程池的信息
          */
         for(String groupId:groupIds){
-            DtpExecutor executor = handlerThreadPoolApi.getExecutor(groupId);
+            DtpExecutor executor = handlerThreadPool.getExecutor(groupId);
 
             threadPoolUtils.register(executor);
 
