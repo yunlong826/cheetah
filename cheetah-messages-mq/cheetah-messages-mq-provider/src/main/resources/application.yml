@@ -3,7 +3,7 @@ server:
 
 spring:
   application:
-    name: cheetah-messages-handler
+    name: cheetah-messages-mq
 
 logging:
   level:
@@ -20,20 +20,22 @@ dubbo:
 cheetah:
   business:
     topic:
-      name:           # 发送消息的交换机名字
+      name: send.messages.direct           # 发送消息的交换机名字
     recall:
       topic:
-        name:         # 撤回消息的交换机名字
+        name: recall.messages.direct       # 撤回消息的交换机名字
     rabbitmq:
-      address:
-      username:
-      password:
+      address: 81.68.177.58:15672
+      username: guest
+      password: guest
+  mq:
+    pipeline: rabbitMq
 
 nacos:
   config:
     server-addr: 81.68.177.58:8848
     type: yaml
-    data-id: cheetah-messages-handler.yml
+    data-id: cheetah-messages-mq.yml
     auto-refresh: true
     group: DEFAULT_GROUP
     bootstrap:

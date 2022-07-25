@@ -29,4 +29,12 @@ nacos:
       log:
         enable: true
 
+cheetah:
+  business:
+    topic:
+      name: send.messages.direct
+    recall:
+      topic:
+        name: recall.messages.direct
+
 

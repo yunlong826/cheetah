@@ -21,7 +21,7 @@ import org.springframework.boot.autoconfigure.condition.ConditionalOnProperty;
  */
 @Slf4j
 @Service
-@ConditionalOnProperty(name = "cheetah-mq-pipeline", havingValue = MessageQueuePipeline.EVENT_BUS)
+@ConditionalOnProperty(name = "cheetah.mq.pipeline", havingValue = MessageQueuePipeline.EVENT_BUS)
 public class EventBusSendMqServiceImpl implements SendMqService {
 
     private EventBus eventBus = new EventBus();

@@ -5,10 +5,10 @@ spring:
   application:
     name: cheetah-messages-service
   datasource:
-    url: jdbc:mysql://81.68.177.58:3306/cheetah_messages?useUnicode=true&characterEncoding=utf8&useSSL=false
+    url: jdbc:mysql://81.68.177.58:8080/cheetah_messages?useUnicode=true&characterEncoding=utf8&useSSL=false
     username: root
     password: 123456
-    driver-class-name: com.mysql.jdbc.Driver
+    driver-class-name: com.mysql.cj.jdbc.Driver
 logging:
   level:
     #root: DEBUG
