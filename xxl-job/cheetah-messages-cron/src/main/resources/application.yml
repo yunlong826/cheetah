@@ -22,7 +22,7 @@ nacos:
   config:
     server-addr: 81.68.177.58:8848
     type: yaml
-    data-id: dynamic-tp-cron-nacos-dtp.yml
+    data-id: cheetah-messages-cron.yml
     auto-refresh: true
     group: DEFAULT_GROUP
     bootstrap:
