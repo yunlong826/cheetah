@@ -1,5 +1,6 @@
 package com.cheetah.messages.controller.api.pipeline;
 
+import java.io.Serializable;
 import java.util.List;
 
 /**
@@ -8,7 +9,7 @@ import java.util.List;
  * @description: 业务执行模板（把责任链的逻辑串起来）
  * @date 2022/7/17 18:29
  */
-public class ProcessTemplate {
+public class ProcessTemplate implements Serializable {
     private List<BusinessProcess> processList;
 
     public List<BusinessProcess> getProcessList() {

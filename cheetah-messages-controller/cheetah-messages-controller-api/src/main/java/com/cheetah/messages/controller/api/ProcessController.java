@@ -19,7 +19,7 @@ public interface ProcessController {
      * @return 返回上下文内容
      */
 
-    public ProcessContext process(ProcessContext context);
+    ProcessContext process(ProcessContext context);
 
 
     /**
@@ -29,6 +29,6 @@ public interface ProcessController {
      * @return 模板映射
      */
 
-    public Map<String, ProcessTemplate> getTemplateConfig();
+    Map<String, ProcessTemplate> getTemplateConfig();
 
 }

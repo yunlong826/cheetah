@@ -6,6 +6,8 @@ import lombok.Data;
 import lombok.NoArgsConstructor;
 import lombok.experimental.Accessors;
 
+import java.io.Serializable;
+
 /**
  * @author jack_yun
  * @version 1.0
@@ -17,7 +19,7 @@ import lombok.experimental.Accessors;
 @AllArgsConstructor
 @NoArgsConstructor
 @Builder
-public class SendRequest {
+public class SendRequest implements Serializable {
 
     /**
      * 执行业务类型

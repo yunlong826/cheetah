@@ -4,6 +4,8 @@ import lombok.AllArgsConstructor;
 import lombok.Data;
 import lombok.experimental.Accessors;
 
+import java.io.Serializable;
+
 /**
  * @author jack_yun
  * @version 1.0
@@ -13,7 +15,7 @@ import lombok.experimental.Accessors;
 @Data
 @Accessors(chain = true)
 @AllArgsConstructor
-public class SendResponse {
+public class SendResponse implements Serializable {
     /**
      * 响应状态
      */

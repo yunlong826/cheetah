@@ -6,6 +6,8 @@ import lombok.Getter;
 import lombok.NoArgsConstructor;
 import lombok.ToString;
 
+import java.io.Serializable;
+
 /**
  * @author jack_yun
  * @version 1.0
@@ -17,7 +19,7 @@ import lombok.ToString;
 @ToString(callSuper = true)
 @AllArgsConstructor
 @NoArgsConstructor
-public final class BasicResultVO<T> {
+public final class BasicResultVO<T> implements Serializable {
     /**
      * 响应状态
      */
