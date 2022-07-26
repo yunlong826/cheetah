@@ -19,8 +19,8 @@ import org.springframework.context.annotation.Configuration;
 public class XxlJobConfig {
     private Logger logger = LoggerFactory.getLogger(XxlJobConfig.class);
 
-    @NacosValue(value = "${xxl.job.admin.addresses}",autoRefreshed = true)
-    private String adminAddresses;
+    @NacosValue(value = "${xxl.job.admin.address}",autoRefreshed = true)
+    private String adminAddress;
 
     @NacosValue(value = "${xxl.job.accessToken}",autoRefreshed = true)
     private String accessToken;
@@ -28,8 +28,6 @@ public class XxlJobConfig {
     @NacosValue(value = "${xxl.job.executor.appname}",autoRefreshed = true)
     private String appname;
 
-    @NacosValue(value = "${xxl.job.executor.address}",autoRefreshed = true)
-    private String address;
 
     @NacosValue(value = "${xxl.job.executor.ip}",autoRefreshed = true)
     private String ip;
@@ -48,9 +46,8 @@ public class XxlJobConfig {
     public XxlJobSpringExecutor xxlJobExecutor() {
         logger.info(">>>>>>>>>>> xxl-job config init.");
         XxlJobSpringExecutor xxlJobSpringExecutor = new XxlJobSpringExecutor();
-        xxlJobSpringExecutor.setAdminAddresses(adminAddresses);
+        xxlJobSpringExecutor.setAdminAddresses(adminAddress);
         xxlJobSpringExecutor.setAppname(appname);
-        xxlJobSpringExecutor.setAddress(address);
         xxlJobSpringExecutor.setIp(ip);
         xxlJobSpringExecutor.setPort(port);
         xxlJobSpringExecutor.setAccessToken(accessToken);

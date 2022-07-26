@@ -37,7 +37,7 @@ public class CronTaskServiceProvider implements CronTaskServiceApi {
     @Value("${xxl.job.admin.password}")
     private String xxlPassword;
 
-    @Value("${xxl.job.admin.addresses}")
+    @Value("${xxl.job.admin.address}")
     private String xxlAddresses;
     @Override
     public BasicResultVO saveCronTask(XxlJobInfo xxlJobInfo) {
