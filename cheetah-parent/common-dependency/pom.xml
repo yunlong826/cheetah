@@ -20,7 +20,7 @@
         <lombok-version>1.18.22</lombok-version>
         <cheetah-parent>0.0.1-SNAPSHOT</cheetah-parent>
         <dubbo.version>2.7.3</dubbo.version>
-        <mybatis-plus.version>3.4.2</mybatis-plus.version>
+        <mybatis-plus.version>3.5.2</mybatis-plus.version>
         <hutool.version>5.7.15</hutool.version>
         <fastJson.version>1.2.83</fastJson.version>
         <spring-boot-autoconfigure.version>2.3.7.RELEASE</spring-boot-autoconfigure.version>
