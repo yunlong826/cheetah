@@ -6,6 +6,7 @@ import lombok.Data;
 import lombok.NoArgsConstructor;
 import lombok.experimental.Accessors;
 
+import java.io.Serializable;
 import java.util.Map;
 
 /**
@@ -19,7 +20,7 @@ import java.util.Map;
 @AllArgsConstructor
 @NoArgsConstructor
 @Builder
-public class MessageParam {
+public class MessageParam implements Serializable {
     /**
      * @Description: 接收者
      * 多个用,逗号号分隔开
