@@ -1,5 +1,7 @@
 package com.cheetah.message.handler.provider.utils;
 
+import java.util.HashMap;
+import java.util.Map;
 import java.util.Properties;
 
 /**
@@ -21,15 +23,15 @@ public class StringToPropertiesUtils {
      * (key:officialAccount) 微信服务号模板消息参数示例：[{"official_10":{"appId":"wxecb4693d2eef1ea7","secret":"624asdfsa1640d769ba20120821","templateId":"JHUk6eE9T5Ts7asdfsadfiKNDQsk-Q","url":"http://weixin.qq.com/download","miniProgramId":"xiaochengxuappid12345","path":"index?foo=bar"}}]
      * (key:miniProgramAccount) 微信小程序订阅消息参数示例：[{"mini_program_10":{"appId":"wxecb4693d2eef1ea7","appSecret":"6240870f4d91701640d769ba20120821","templateId":"JHUk6eE9T5TasdfCrQsk-Q","grantType":"client_credential","miniProgramState":"trial","page":"index?foo=bar"}}]
      */
-    public static Properties stringToProperties(String str){
+    public static <K extends Object,V extends Object> Map<K,V> stringToMap(String str){
         String[] splits = str.split("\n");
-        Properties properties = new Properties();
+        Map<String,String> map = new HashMap<>();
         for(String split:splits){
             int equal = split.indexOf("=");
             String key = split.substring(0,equal);
             String value = split.substring(equal+1);
-            properties.put(key,value);
+            map.put(key,value);
         }
-        return properties;
+        return (Map<K, V>) map;
     }
 }

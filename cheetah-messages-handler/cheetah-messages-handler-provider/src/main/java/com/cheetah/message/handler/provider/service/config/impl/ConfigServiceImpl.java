@@ -11,6 +11,7 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
 import java.nio.charset.StandardCharsets;
+import java.util.Map;
 import java.util.Properties;
 
 /**
@@ -43,7 +44,7 @@ public class ConfigServiceImpl implements ConfigService {
     @NacosValue(value = "${messages.account.group}",autoRefreshed = true)
     private String group;
 
-    @NacosValue(value = "${messages.account.server-addr",autoRefreshed = true)
+    @NacosValue(value = "${messages.account.server-addr}",autoRefreshed = true)
     private String serverAddr;
 
 
@@ -53,15 +54,16 @@ public class ConfigServiceImpl implements ConfigService {
     public String getProperty(String key, String defaultValue) {
         if(enableNacos){
             this.configService = getConfigService();
-            Properties properties = null;
+            Map<String,String> properties = null;
             try{
                 String config = configService.getConfig(data_ids, group, 3000);
                 log.info("com.alibaba.nacos.api.config.ConfigService configService====={}",config);
-                properties = StringToPropertiesUtils.stringToProperties(config);
+                properties = StringToPropertiesUtils.stringToMap(config);
             }catch (NacosException e){
                 e.printStackTrace();
             }
-            return properties.getProperty(key,defaultValue);
+            boolean b = properties.containsKey(key);
+            return properties.getOrDefault(key,defaultValue);
         }else{
             return props.getProperty(key,defaultValue);
         }

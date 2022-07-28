@@ -16,6 +16,12 @@ dubbo:
     port: -1
   registry:
     address: nacos://81.68.177.58:8848
+  provider:
+    timeout: 30000
+    check: false
+  consumer:
+    timeout: 30000
+    check: false
 
 
 nacos:

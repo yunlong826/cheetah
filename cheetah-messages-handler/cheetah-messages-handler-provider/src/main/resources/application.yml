@@ -1,5 +1,5 @@
 server:
-  port: 8878
+  port: 8828
 
 spring:
   application:
@@ -59,6 +59,12 @@ dubbo:
     port: -1
   registry:
     address: nacos://81.68.177.58:8848
+  provider:
+    timeout: 30000
+    check: false
+  consumer:
+    timeout: 30000
+    check: false
 
 nacos:
   config:
@@ -79,4 +85,4 @@ messages:
     data-id: local.properties
     group: DEFAULT_GROUP
     bootstrap:
-      enable: true
+      enable: false

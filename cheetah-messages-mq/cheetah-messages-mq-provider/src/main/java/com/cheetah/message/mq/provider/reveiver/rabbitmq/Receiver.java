@@ -4,6 +4,7 @@ import com.alibaba.nacos.api.config.annotation.NacosValue;
 import com.cheetah.message.handler.api.group.GroupIdMappingApi;
 import com.cheetah.message.mq.provider.constants.MessageQueuePipeline;
 import com.rabbitmq.client.AMQP;
+import lombok.extern.slf4j.Slf4j;
 import org.apache.dubbo.config.annotation.Reference;
 import org.springframework.amqp.core.Binding;
 import org.springframework.amqp.core.BindingBuilder;
@@ -32,6 +33,7 @@ import java.util.Properties;
  */
 @Component
 @ConditionalOnProperty(name = "cheetah.mq.pipeline",havingValue = MessageQueuePipeline.RABBIT_MQ)
+@Slf4j
 public class Receiver implements InitializingBean {
 
     @Reference
@@ -57,18 +59,16 @@ public class Receiver implements InitializingBean {
             , DirectExchange directExchange
             ,String routeKey){
         Properties queueProperties = rabbitAdmin.getQueueProperties(queueName);
+        Queue queue = new Queue(queueName,true,false,false,null);
         if(queueProperties == null){
-            Queue queue = new Queue(queueName,true,false,false,null);
-
-
             rabbitAdmin.declareQueue(queue);
             rabbitAdmin.declareExchange(directExchange);
             rabbitAdmin.declareBinding(BindingBuilder.bind(queue).to(directExchange).with(routeKey));
-            if(directExchange.getName().equals(this.topic)){
-                listenerContainer.addQueues(queue);
-            }else{
-                listenerRecallContainer.addQueues(queue);
-            }
+        }
+        if(directExchange.getName().equals(this.topic)){
+            listenerContainer.addQueues(queue);
+        }else{
+            listenerRecallContainer.addQueues(queue);
         }
     }
 
@@ -84,6 +84,8 @@ public class Receiver implements InitializingBean {
             // 创建撤回消息队列
             createQueue("recall"+allGroupIds.get(i),recallExchange,allGroupIds.get(i));
         }
+        log.info("listenerContainer监听的队列数量为:{}",listenerContainer.getQueueNames().length);
+        log.info("listenerRecallContainer监听的队列数量为:{}",listenerRecallContainer.getQueueNames().length);
 
     }
 }
