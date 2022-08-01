@@ -23,4 +23,11 @@ public class SendAccountConstant {
      */
     public static final String DING_DING_ROBOT_ACCOUNT_KEY = "dingDingRobotAccount";
     public static final String DING_DING_ROBOT_PREFIX = "ding_ding_robot_";
+
+    /**
+     * 钉钉 工作应用消息 账号
+     */
+    public static final String DING_DING_WORK_NOTICE_ACCOUNT_KEY = "dingDingWorkNoticeAccount";
+    public static final String DING_DING_WORK_NOTICE_PREFIX = "ding_ding_work_notice_";
+    public static final String DING_DING_ACCESS_TOKEN_PREFIX = "ding_ding_access_token_";
 }

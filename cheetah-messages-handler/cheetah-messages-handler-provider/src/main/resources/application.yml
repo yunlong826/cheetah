@@ -4,6 +4,10 @@ server:
 spring:
   application:
     name: cheetah-messages-handler
+  redis:
+    host:
+    port:
+    password:
   dynamic:
     tp:
       enabled: true
