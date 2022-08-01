@@ -43,6 +43,3 @@
 
 # 5. 展望
 项目没有生成可视化界面，这需要一定的前端知识，后续会考虑实现前端，让操作更加简单。
-# 6. 参考资料
-
-1. [https://github.com/ZhongFuCheng3y/austin](https://github.com/ZhongFuCheng3y/austin)
